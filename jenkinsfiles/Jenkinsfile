@@ -25,6 +25,13 @@ pipeline {
                 }
             }*/
         }
+        stage('SonarQube') {
+            steps {
+                echo'------ SonarQube ------'
+                withSonarQubeEnv('SonarQube') {
+                sh "/opt/sonar-scanner/bin/sonar-scanner"
+            }
+        }
         stage('Deploy') {
             steps {
                 echo '------ Deploying ------'
